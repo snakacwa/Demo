@@ -1,0 +1,51 @@
+---
+title: "Diamonds Dash board"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+ggplot2::diamonds	 
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### A histogram showing prices
+
+```{r}
+library(billboarder)
+billboarder()%>%
+  bb_histogram(ggplot2::diamonds	$price)
+
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### A pie chart showing distribution of the diamonds cut
+
+```{r}
+library(billboarder)
+dtab<- table(ggplot2::diamonds	$clarity)
+
+billboarder()%>%
+  bb_piechart(dtab)
+
+```
+
+### pie chart representing the cut of diamonds
+
+```{r}
+library(billboarder)
+diamondtab<- table(ggplot2::diamonds$cut)
+billboarder()%>%
+  bb_piechart(diamondtab)
+  
+
+```
+
